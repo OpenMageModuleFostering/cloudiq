@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Cloudiq_Callme>
+            <active>true</active>
+            <codePool>community</codePool>
+            <depends>
+                <Cloudiq_Core/>
+            </depends>
+        </Cloudiq_Callme>
+    </modules>
+</config>

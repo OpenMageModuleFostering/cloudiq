@@ -1,0 +1,17 @@
+/*
+ * Import button styles for preview
+ */
+@import url("../../../../frontend/base/default/cloudiq/css/callme-button.css");
+
+/* Make the text inputs in the Pop Up section expand to full width */
+#edit_form #popup.fieldset td.value input {
+    width: 95%;
+}
+/*
+ * Openinghours form field styling
+ */
+.opening_hours_select > select {
+    display: inline;
+    width: auto !important;
+    margin: 5px;
+}

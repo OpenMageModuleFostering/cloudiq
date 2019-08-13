@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<config>
+
+    <modules>
+        <Cloudiq_Callme>
+            <version>1.0.0</version>
+        </Cloudiq_Callme>
+    </modules>
+
+    <global>
+        <blocks>
+            <cloudiq_callme>
+                <class>Cloudiq_Callme_Block</class>
+            </cloudiq_callme>
+        </blocks>
+        <models>
+            <cloudiq_callme>
+                <class>Cloudiq_Callme_Model</class>
+                <resourceModel>cloudiq_callme_resource</resourceModel>
+            </cloudiq_callme>
+            <cloudiq_callme_resource>
+                <class>Cloudiq_Callme_Model_Resource</class>
+                <entities>
+                    <config>
+                        <table>cloudiq_callme_config</table>
+                    </config>
+                </entities>
+            </cloudiq_callme_resource>
+        </models>
+        <helpers>
+            <cloudiq_callme>
+                <class>Cloudiq_Callme_Helper</class>
+            </cloudiq_callme>
+        </helpers>
+        <resources>
+            <cloudiq_callme_setup>
+                <setup>
+                    <module>Cloudiq_Callme</module>
+                </setup>
+            </cloudiq_callme_setup>
+        </resources>
+        <events>
+            <cloudiq_core_config_save>
+                <observers>
+                    <cloudiq_callme>
+                        <type>singleton</type>
+                        <class>cloudiq_callme/observer</class>
+                        <method>observeCloudiqCoreConfigSave</method>
+                    </cloudiq_callme>
+                </observers>
+            </cloudiq_core_config_save>
+            <controller_action_layout_generate_blocks_after>
+                <observers>
+                    <cloudiq_callme_insert_block>
+                        <type>singleton</type>
+                        <class>cloudiq_callme/observer</class>
+                        <method>observeControllerActionLayoutGenerateBlocksAfter</method>
+                    </cloudiq_callme_insert_block>
+                </observers>
+            </controller_action_layout_generate_blocks_after>
+        </events>
+    </global>
+
+    <frontend>
+        <routers>
+            <cloudiq>
+                <args>
+                    <modules>
+                        <cloudiq_callme before="Cloudiq_Core">Cloudiq_Callme</cloudiq_callme>
+                    </modules>
+                </args>
+            </cloudiq>
+        </routers>
+    </frontend>
+
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <cloudiq_callme before="Mage_Adminhtml">Cloudiq_Callme_Adminhtml</cloudiq_callme>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+
+    <adminhtml>
+        <layout>
+            <updates>
+                <cloudiq_callme>
+                    <file>cloudiq/callme.xml</file>
+                </cloudiq_callme>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <Cloudiq_Callme>
+                    <files>
+                        <default>Cloudiq_Callme.csv</default>
+                    </files>
+                </Cloudiq_Callme>
+            </modules>
+        </translate>
+    </adminhtml>
+
+    <phpunit>
+        <suite>
+            <modules>
+                <Cloudiq_Callme/>
+            </modules>
+        </suite>
+    </phpunit>
+
+</config>

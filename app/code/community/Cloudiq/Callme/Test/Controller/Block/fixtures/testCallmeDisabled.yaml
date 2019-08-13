@@ -1,0 +1,43 @@
+config:
+  default/cloudiq_core/global/account_id: 123
+  default/cloudiq_core/global/token: 123
+  default/cloudiq_core/global/enabled: 1
+tables:
+  cloudiq_callme/config:
+    -
+      id: 1
+      app_id: 123
+      enabled: 0
+      average_sale_value: 1.00
+      average_sales_call: 3
+      button_position: "leftBottom"
+      button_template: "1"
+      button_colour: "FFFFFF"
+      button_heading: 1
+      button_message: 1
+      pop_up_logo: "http://test"
+      pop_up_title: 1
+      pop_up_strapline: 1
+      pop_up_conf_open: 1
+      pop_up_conf_closed: 1
+      callback_callcentre_number: 1
+      callback_dtmf_tunnel: 1
+      call_centre_time_zone: "Europe/London"
+      monday_from: "00:00"
+      monday_to: "00:00"
+      tuesday_from: "00:00"
+      tuesday_to: "00:00"
+      wednesday_from: "00:00"
+      wednesday_to: "00:00"
+      thursday_from: "00:00"
+      thursday_to: "00:00"
+      friday_from: "00:00"
+      friday_to: "00:00"
+      saturday_from: "00:00"
+      saturday_to: "00:00"
+      sunday_from: "00:00"
+      sunday_to: "00:00"
+      bank_holiday_from: "00:00"
+      bank_holiday_to: "00:00"
+      display_on_all: 1
+      display_on_pages: ""

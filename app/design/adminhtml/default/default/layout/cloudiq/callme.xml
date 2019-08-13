@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<layout>
+    <adminhtml_cloudiq_edit>
+        <reference name="head">
+            <action method="addCss"><stylesheet>cloudiq/callme.css</stylesheet></action>
+            <action method="addItem"><type>skin_js</type><name>cloudiq/js/callme.js</name></action>
+            <action method="addJs"><script>cloudiq/callme-jscolor/jscolor.js</script></action>
+            <action method="addJs"><script>cloudiq/callme-button.js</script></action>
+        </reference>
+        <reference name="left">
+            <reference  name="cloudiq.config.edit.tabs">
+                <block type="cloudiq_callme/adminhtml_config_edit_tab_callme" name="cloudiq.config.edit.tab.callme">
+                    <action method="setAfter">
+                        <after>global_section</after>
+                    </action>
+                </block>
+                <action method="addTab">
+                    <name>callme_section</name>
+                    <block>cloudiq.config.edit.tab.callme</block>
+                </action>
+            </reference>
+        </reference>
+    </adminhtml_cloudiq_edit>
+</layout>

@@ -1,0 +1,16 @@
+{
+    "name": "OpenMageModuleFostering/cloudiq",
+    "type": "magento-module",
+    "license": "Commercial-License",
+    "homepage": "",
+    "description": "The callMe extension provides a click-to-call button/service for your website which will automatically connect calls to customers.",
+    "authors": [
+    {
+        "name": "cloud.IQ",
+        "email": "sales@cloud-iq.com"
+    }
+],
+    "suggest": {
+        "magento-hackathon/magento-composer-installer": "*"
+    }
+}
