@@ -35,6 +35,8 @@ class Cloudiq_Callme_Block_Adminhtml_Config_Edit_Tab_Callme extends Mage_Adminht
         $this->_addPopupFieldset($form);
         $this->_addCallbackFieldset($form);
         $this->_addPublishedFieldset($form);
+
+        $this->setForm($form);
     }
 
     protected function _addPublishedFieldset($form) {
@@ -232,8 +234,6 @@ class Cloudiq_Callme_Block_Adminhtml_Config_Edit_Tab_Callme extends Mage_Adminht
             'value' => ($this->_input_data) ? $this->_input_data->getData("popup/confirmation_closed") : $this->_config_model->getPopUpConfClosed(),
             'required' => true,
         ));
-
-        $this->setForm($form);
     }
 
     protected function _addButtonFieldset($form) {

@@ -12,7 +12,7 @@ class Cloudiq_Callme_Test_Controller_Block extends EcomDev_PHPUnit_Test_Case_Con
         $this->dispatch($path);
         $this->assertModuleConfigured();
         $this->assertLayoutHandleLoaded($handle);
-        $this->assertLayoutBlockRendered('cloudiq_callme.button_js');
+        $this->assertLayoutBlockRendered('cloudiq_callme.button');
     }
 
     /**
@@ -24,7 +24,7 @@ class Cloudiq_Callme_Test_Controller_Block extends EcomDev_PHPUnit_Test_Case_Con
         $this->dispatch('');
         $this->assertModuleConfigured();
         $this->assertLayoutHandleLoaded('cms_index_index');
-        $this->assertLayoutBlockNotRendered('cloudiq_callme.button_js');
+        $this->assertLayoutBlockNotRendered('cloudiq_callme.button');
     }
 
     /**
@@ -36,7 +36,7 @@ class Cloudiq_Callme_Test_Controller_Block extends EcomDev_PHPUnit_Test_Case_Con
         $this->dispatch('');
         $this->assertModuleConfigured();
         $this->assertLayoutHandleLoaded('cms_index_index');
-        $this->assertLayoutBlockNotRendered('cloudiq_callme.button_js');
+        $this->assertLayoutBlockNotRendered('cloudiq_callme.button');
     }
 
     public function assertModuleConfigured() {
