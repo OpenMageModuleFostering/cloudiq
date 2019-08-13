@@ -78,6 +78,9 @@
                 </args>
             </cloudiq>
         </routers>
+        <secure_url>
+            <cloudiq_callme>/cloudiq/callme</cloudiq_callme>
+        </secure_url>
         <translate>
             <modules>
                 <Cloudiq_Callme>

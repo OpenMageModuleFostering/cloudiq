@@ -137,7 +137,15 @@ class Cloudiq_Callme_Block_Button extends Mage_Core_Block_Template {
      * @return string
      */
     protected function _getFormUrl() {
-        return $this->getUrl('cloudiq/callme/request');
+        $params = array();
+        if (Mage::app()->getStore()->isCurrentlySecure()) {
+            // The generated URL should automatically be secure if the "Use secure URLs in Frontend" setting is
+            // set in the configuration. However, even if it's not, the page can be accessed over HTTPS if the
+            // right base url is set, but in that case the URL generated here will be HTTP and the Ajax submit
+            // will fail. Therefore, force a secure URL to be generated if the request was secure.
+            $params['_forced_secure'] = true;
+        }
+        return $this->getUrl('cloudiq/callme/request', $params);
     }
 
     /**
