@@ -7,27 +7,29 @@ function cloudiqCallmeInit() {
     var callme_popup_response = $('cloudiq-callme-popup-response');
 
     // Adjust the position of the button if it's rotated
-    var position_adjustment = {};
     var class_matches = callme_button.getAttribute('class').match(/cloudiq-callme-position-(left|right)(top|middle|bottom)/);
-    if (Prototype.Browser.IE) {
-        var adjustment_value = Math.abs(callme_button.getHeight() - callme_button.getWidth());
-        if (class_matches[1] == "right") {
+    if (class_matches) {
+        var position_adjustment = {};
+        if (Prototype.Browser.IE) {
+            var adjustment_value = Math.abs(callme_button.getHeight() - callme_button.getWidth());
+            if (class_matches[1] == "right") {
+                position_adjustment[class_matches[1]] = "-" + adjustment_value + "px";
+            }
+            if (class_matches[2] == "bottom") {
+                position_adjustment[class_matches[2]] = adjustment_value + "px";
+            }
+        } else {
+            var adjustment_value = Math.abs(Math.round(callme_button.getWidth() / 2 - callme_button.getHeight() / 2));
             position_adjustment[class_matches[1]] = "-" + adjustment_value + "px";
+            if (class_matches[2] != "middle") {
+                position_adjustment[class_matches[2]] = adjustment_value + "px";
+            }
         }
-        if (class_matches[2] == "bottom") {
-            position_adjustment[class_matches[2]] = adjustment_value + "px";
+        if (class_matches[2] == "middle") {
+            position_adjustment["marginTop"] = "-" + Math.round(callme_button.getHeight() / 2) + "px";
         }
-    } else {
-        var adjustment_value = Math.abs(Math.round(callme_button.getWidth() / 2 - callme_button.getHeight() / 2));
-        position_adjustment[class_matches[1]] = "-" + adjustment_value + "px";
-        if (class_matches[2] != "middle") {
-            position_adjustment[class_matches[2]] = adjustment_value + "px";
-        }
+        callme_button.setStyle(position_adjustment);
     }
-    if (class_matches[2] == "middle") {
-        position_adjustment["marginTop"] = "-" + Math.round(callme_button.getHeight() / 2) + "px";
-    }
-    callme_button.setStyle(position_adjustment);
 
     // Position the popup in the centre of the screen
     callme_popup.setStyle({
