@@ -1,7 +1,7 @@
 <?php
 class Cloudiq_Core_Helper_Config extends Mage_Core_Helper_Abstract {
 
-    const CLOUDIQ_BASE_URL = "http://nimbus.cloud-iq.com/nc_uat/";
+    const CLOUDIQ_BASE_URL = "https://platform.cloud-iq.com/";
 
     public function hasBeenSetUp() {
         return $this->getToken() != "";
