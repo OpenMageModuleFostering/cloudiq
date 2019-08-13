@@ -3,7 +3,7 @@
 
     <modules>
         <Cloudiq_Callme>
-            <version>1.0.0</version>
+            <version>2.0.1</version>
         </Cloudiq_Callme>
     </modules>
 
@@ -78,9 +78,6 @@
                 </args>
             </cloudiq>
         </routers>
-        <secure_url>
-            <cloudiq_callme>/cloudiq/callme</cloudiq_callme>
-        </secure_url>
         <translate>
             <modules>
                 <Cloudiq_Callme>
