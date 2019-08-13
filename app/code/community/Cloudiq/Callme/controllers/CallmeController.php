@@ -23,11 +23,13 @@ class Cloudiq_Callme_CallmeController extends Mage_Core_Controller_Front_Action 
                     $result["message"] = "API call result unknown";
                 }
             } else {
-                $result["message"] = "Must specify a phone number to call";
+                $result["message"] = "Please specify a mobile number to call in international format, ie +44";
             }
         } else {
             $result["message"] = "callMe module is not available";
         }
+
+        $result["message"] = Mage::helper("cloudiq_callme")->__($result["message"]);
 
         $this->getResponse()
             ->setHeader('Content-type', 'application/json')

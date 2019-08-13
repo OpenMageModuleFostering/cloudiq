@@ -71,7 +71,7 @@ class Cloudiq_Callme_Block_Adminhtml_Config_Edit_Tab_Callme extends Mage_Adminht
             'label' => $this->_helper->__('Your number'),
             'title' => $this->_helper->__('Your number'),
             'name' => 'callme[callback][number]',
-            'note' => 'This is the number called when the consumer makes a request. It should be a landline number. Once answered you will be connected to the consumer.',
+            'note' => 'Please enter a landline number in international format, i.e +44. This is the number called when the consumer makes a request. Once answered you will be connected to the consumer.',
             'value' => ($this->_input_data) ? $this->_input_data->getData("callback/number") : $this->_config_model->getCallbackCallcentreNumber(),
             'required' => true,
         ));

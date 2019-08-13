@@ -19,6 +19,7 @@
                 <block type="cloudiq_core/adminhtml_config_edit_tab_frame" name="cloudiq.config.edit.tab.dashboard">
                     <action method="setLabel"><label>Dashboard</label></action>
                     <action method="setModule"><module>dashboard</module></action>
+                    <action method="setTabName"><name>dashboard_section</name></action>
                 </block>
                 <action method="addTab">
                     <name>dashboard_section</name>
@@ -27,6 +28,7 @@
                 <block type="cloudiq_core/adminhtml_config_edit_tab_frame" name="cloudiq.config.edit.tab.account">
                     <action method="setLabel"><label>Account</label></action>
                     <action method="setModule"><module>account</module></action>
+                    <action method="setTabName"><name>account_section</name></action>
                 </block>
                 <action method="addTab">
                     <name>account_section</name>
@@ -35,6 +37,7 @@
                 <block type="cloudiq_core/adminhtml_config_edit_tab_frame" name="cloudiq.config.edit.tab.support">
                     <action method="setLabel"><label>Support</label></action>
                     <action method="setModule"><module>support</module></action>
+                    <action method="setTabName"><name>support_section</name></action>
                 </block>
                 <action method="addTab">
                     <name>support_section</name>

@@ -1,5 +1,6 @@
 <style type="text/css">
-    .<?php echo $this->_getTemplateClass(); ?> {
+    #cloudiq-callme-button.<?php echo $this->_getTemplateClass(); ?> #cloudiq-callme-button-content,
+    #cloudiq-callme-popup.<?php echo $this->_getTemplateClass(); ?> {
         background: -moz-linear-gradient(top,  #<?php echo $this->_getGradientStartColour(); ?> 0%, #<?php echo $this->_getGradientEndColour(); ?> 100%); /* FF3.6+ */
         background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#<?php echo $this->_getGradientStartColour(); ?>), color-stop(100%,#<?php echo $this->_getGradientEndColour(); ?>)); /* Chrome,Safari4+ */
         background: -webkit-linear-gradient(top,  #<?php echo $this->_getGradientStartColour(); ?> 0%,#<?php echo $this->_getGradientEndColour(); ?> 100%); /* Chrome10+,Safari5.1+ */
@@ -16,8 +17,10 @@
     }
 </style>
 <div id="cloudiq-callme-button" class="<?php echo $this->_getButtonClass(); ?>">
-    <p id="cloudiq-callme-button-title"><?php echo $this->_getFromConfig("button_heading"); ?></p>
-    <p id="cloudiq-callme-button-message"><?php echo $this->_getFromConfig("button_message"); ?></p>
+    <div id="cloudiq-callme-button-content">
+        <p id="cloudiq-callme-button-title"><?php echo $this->_getFromConfig("button_heading"); ?></p>
+        <p id="cloudiq-callme-button-message"><?php echo $this->_getFromConfig("button_message"); ?></p>
+    </div>
 </div>
 <div id="cloudiq-callme-popup" class="<?php echo $this->_getPopupClass(); ?>">
     <div id="cloudiq-callme-popup-close">&times;</div>
@@ -27,10 +30,10 @@
     <p id="cloudiq-callme-popup-title"><?php echo $this->_getFromConfig("pop_up_title"); ?></p>
     <p id="cloudiq-callme-popup-strapline"><?php echo $this->_getFromConfig("pop_up_strapline"); ?></p>
     <form id="cloudiq-callme-popup-form" name="cloudiq-callme-popup-form" method="POST" action="<?php echo $this->_getFormUrl(); ?>">
-        <label for="cloudiq-callme-popup-form-number">Mobile number</label>
-        <input type="text" name="phone_number" id="cloudiq-callme-popup-form-number" />
-        <button type="submit" <?php if ($this->getDisabled()) echo "disabled"; ?>>Submit</button>
+        <label for="cloudiq-callme-popup-form-number"><?php echo $this->__("Mobile number (e.g. +44...)"); ?></label>
+        <input type="text" name="phone_number" id="cloudiq-callme-popup-form-number" title="<?php echo $this->__("Please enter in international format, i.e. +44"); ?>" />
+        <div id="cloudiq-callme-popup-response"></div>
+        <button type="submit" id="cloudiq-callme-popup-form-button" <?php if ($this->getDisabled()) echo "disabled"; ?>>Submit</button>
     </form>
-    <div id="cloudiq-callme-popup-response"></div>
 </div>
 <script>cloudiqCallmeInit()</script>

@@ -3,7 +3,31 @@ function cloudiqCallmeInit() {
     var callme_popup = $('cloudiq-callme-popup');
     var callme_popup_close_button = $('cloudiq-callme-popup-close');
     var callme_popup_form = $('cloudiq-callme-popup-form');
+    var callme_popup_form_button = $('cloudiq-callme-popup-form-button');
     var callme_popup_response = $('cloudiq-callme-popup-response');
+
+    // Adjust the position of the button if it's rotated
+    var position_adjustment = {};
+    var class_matches = callme_button.getAttribute('class').match(/cloudiq-callme-position-(left|right)(top|middle|bottom)/);
+    if (Prototype.Browser.IE) {
+        var adjustment_value = Math.abs(callme_button.getHeight() - callme_button.getWidth());
+        if (class_matches[1] == "right") {
+            position_adjustment[class_matches[1]] = "-" + adjustment_value + "px";
+        }
+        if (class_matches[2] == "bottom") {
+            position_adjustment[class_matches[2]] = adjustment_value + "px";
+        }
+    } else {
+        var adjustment_value = Math.abs(Math.round(callme_button.getWidth() / 2 - callme_button.getHeight() / 2));
+        position_adjustment[class_matches[1]] = "-" + adjustment_value + "px";
+        if (class_matches[2] != "middle") {
+            position_adjustment[class_matches[2]] = adjustment_value + "px";
+        }
+    }
+    if (class_matches[2] == "middle") {
+        position_adjustment["marginTop"] = "-" + Math.round(callme_button.getHeight() / 2) + "px";
+    }
+    callme_button.setStyle(position_adjustment);
 
     // Position the popup in the centre of the screen
     callme_popup.setStyle({
@@ -20,10 +44,12 @@ function cloudiqCallmeInit() {
 
             // Reset popup elements before displaying it
             if (display_value != "none") {
-                callme_popup_form.setStyle({display: "block"});
                 callme_popup_response.update("");
                 callme_popup_response.removeClassName("cloudiq-callme-status-success");
                 callme_popup_response.removeClassName("cloudiq-callme-status-failure");
+                callme_popup_form.select("label, input, button").each(function (e) {
+                    e.show();
+                });
             }
 
             callme_popup.setStyle({display: display_value});
@@ -32,6 +58,11 @@ function cloudiqCallmeInit() {
 
     // Submit callMe callback request through Ajax
     callme_popup_form.observe("submit", function (e) {
+        callme_popup_response.update("");
+        callme_popup_response.removeClassName("cloudiq-callme-status-success");
+        callme_popup_response.removeClassName("cloudiq-callme-status-failure");
+        callme_popup_form_button.update("Loading...");
+
         callme_popup_form.request({
             onComplete: function (transport) {
                 var result;
@@ -44,13 +75,16 @@ function cloudiqCallmeInit() {
                     };
                 }
 
-                // Update the response box
+                // Update the popup
                 var result_class = (result.status) ? "success" : "failure";
                 callme_popup_response.addClassName("cloudiq-callme-status-" + result_class);
                 callme_popup_response.update(result.message);
-
-                // Hide the form
-                callme_popup_form.setStyle({display: "none"});
+                callme_popup_form_button.update("Submit");
+                if (result.status) {
+                    callme_popup_form.select("label, input, button").each(function (e) {
+                        e.hide();
+                    });
+                }
             }
         });
         e.stop();

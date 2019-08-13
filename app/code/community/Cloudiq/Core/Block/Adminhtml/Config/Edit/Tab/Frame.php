@@ -36,4 +36,8 @@ class Cloudiq_Core_Block_Adminhtml_Config_Edit_Tab_Frame extends Mage_Adminhtml_
     public function isHidden() {
         return !$this->_helper->hasBeenSetUp();
     }
+
+    protected function getFrameId() {
+        return "cloudiq_frame_" . $this->getModule();
+    }
 }

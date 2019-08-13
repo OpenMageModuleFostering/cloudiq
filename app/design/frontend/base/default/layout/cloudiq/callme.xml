@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <cloudiq_callme_button translate="label">
+        <label>cloud.IQ callMe button</label>
+        <reference name="head">
+            <action method="addItem"><type>skin_css</type><file>cloudiq/css/callme-button.css</file></action>
+            <action method="addItem"><type>js</type><file>cloudiq/callme-button.js</file></action>
+        </reference>
+        <reference name="before_body_end">
+            <block type="cloudiq_callme/button" name="cloudiq_callme.button" />
+        </reference>
+    </cloudiq_callme_button>
+</layout>

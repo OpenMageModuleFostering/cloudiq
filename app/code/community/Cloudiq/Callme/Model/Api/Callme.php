@@ -33,15 +33,15 @@ class Cloudiq_Callme_Model_Api_Callme extends Cloudiq_Core_Model_Api_Abstract {
                 if (!is_null($callme_response)) {
                     if ($callme_response['status'] == Cloudiq_Core_Model_Api_Response::STATUS_SUCCESS) {
                         // Successful callMe response, check if a new app ID was created
-                        $app_id = (int) $callme_response->appId;
-                        if (!is_null($app_id)) {
-                            $config->setAppId($app_id);
+                        if ($callme_response->appId && is_numeric((string) $callme_response->appId)) {
+                            $config->setAppId((string) $callme_response->appId);
                         }
                     } else {
                         // Unsuccessful callMe response, build an appropriate error message
-                        $error_message = "Unsuccessful callMe response: " . $response->getApiStatusCodeDescription($callme_response['status']);
                         if ($callme_response->description) {
-                            $error_message .= ": " . $callme_response->description;
+                            $error_message = sprintf("%s", $callme_response->description);
+                        } else {
+                            $error_message = $response->getApiStatusCodeDescription($callme_response['status']);
                         }
                         $errors[] = $error_message;
                     }
@@ -102,9 +102,10 @@ class Cloudiq_Callme_Model_Api_Callme extends Cloudiq_Core_Model_Api_Abstract {
                         $result["message"] = sprintf("%s", $callback_response->description);
                     } else {
                         // Unsuccessful callback response, fetch the error message
-                        $result["message"] = $response->getApiStatusCodeDescription($callback_response['status']);
                         if ($callback_response->description) {
-                            $result["message"] .= sprintf(": %s", $callback_response->description);
+                            $result["message"] = sprintf("%s", $callback_response->description);
+                        } else {
+                            $result["message"] = $response->getApiStatusCodeDescription($callback_response['status']);
                         }
                     }
                 }

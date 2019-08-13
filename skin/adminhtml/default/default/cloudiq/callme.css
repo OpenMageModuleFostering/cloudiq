@@ -3,6 +3,23 @@
  */
 @import url("../../../../frontend/base/default/cloudiq/css/callme-button.css");
 
+/* Preview specific styles for popup */
+#cloudiq-callme-popup-form button {
+    cursor: default;
+}
+
+#cloudiq-callme-popup:before {
+    display: block;
+    content: "Preview";
+    font-size: 70px;
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=10)"; /* IE8 */
+    filter: alpha(opacity=10); /* IE6/7 */
+    opacity: 0.1;
+    position: absolute;
+    top: 120px;
+    left: 90px;
+}
+
 /* Make the text inputs in the Pop Up section expand to full width */
 #edit_form #popup.fieldset td.value input {
     width: 95%;

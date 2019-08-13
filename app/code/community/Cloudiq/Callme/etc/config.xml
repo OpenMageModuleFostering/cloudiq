@@ -49,19 +49,26 @@
                     </cloudiq_callme>
                 </observers>
             </cloudiq_core_config_save>
-            <controller_action_layout_generate_blocks_after>
+            <controller_action_layout_load_before>
                 <observers>
                     <cloudiq_callme_insert_block>
                         <type>singleton</type>
                         <class>cloudiq_callme/observer</class>
-                        <method>observeControllerActionLayoutGenerateBlocksAfter</method>
+                        <method>observeControllerActionLayoutLoadBefore</method>
                     </cloudiq_callme_insert_block>
                 </observers>
-            </controller_action_layout_generate_blocks_after>
+            </controller_action_layout_load_before>
         </events>
     </global>
 
     <frontend>
+        <layout>
+            <updates>
+                <cloudiq_callme>
+                    <file>cloudiq/callme.xml</file>
+                </cloudiq_callme>
+            </updates>
+        </layout>
         <routers>
             <cloudiq>
                 <args>
@@ -71,6 +78,15 @@
                 </args>
             </cloudiq>
         </routers>
+        <translate>
+            <modules>
+                <Cloudiq_Callme>
+                    <files>
+                        <default>Cloudiq_Callme.csv</default>
+                    </files>
+                </Cloudiq_Callme>
+            </modules>
+        </translate>
     </frontend>
 
     <admin>

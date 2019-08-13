@@ -52,7 +52,7 @@ class Cloudiq_Callme_Model_Observer extends Varien_Object {
      *
      * @param Varien_Event_Observer $observer
      */
-    public function observeControllerActionLayoutGenerateBlocksAfter(Varien_Event_Observer $observer) {
+    public function observeControllerActionLayoutLoadBefore(Varien_Event_Observer $observer) {
         /** @var Mage_Core_Model_Layout $layout */
         $layout = Mage::app()->getLayout();
 
@@ -81,17 +81,8 @@ class Cloudiq_Callme_Model_Observer extends Varien_Object {
          * Only render the block if we've checked the "Display on all pages" checkbox, or at least one of our current
          * page handles matches the configured handles.
          */
-        $should_render_block = (
-            $callme_config->getDisplayOnAll() ||
-            count(array_intersect($callme_handles, $layout_handles)) > 0
-        );
-
-        if ($should_render_block) {
-            // TODO: convert this into a layout update that gets applied through a handle
-            $callme_block = $layout->createBlock('cloudiq_callme/button', 'cloudiq_callme.button_js');
-            $layout->getBlock('before_body_end')->insert($callme_block);
-            $layout->getBlock('head')->addItem("skin_css", "cloudiq/css/callme-button.css");
-            $layout->getBlock('head')->addItem("js", "cloudiq/callme-button.js");
+        if ($callme_config->getDisplayOnAll() || count(array_intersect($callme_handles, $layout_handles)) > 0) {
+            $layout->getUpdate()->addHandle("cloudiq_callme_button");
         }
     }
 }
